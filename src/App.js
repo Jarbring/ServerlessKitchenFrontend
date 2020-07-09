@@ -1,24 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AxiosRequests from './Modules/AxiosRequests';
 
 function App() {
+
+
+  
+  // AxiosRequests.testBackendConnection();
+  // AxiosRequests.getRecipes();
+
+  //--------------CREATE RECIPE TEST------------------
+  // let recipe = {name: "Cotton Candy2000",
+  // instructions: "Spinn it well!",
+  // ingredients: [
+  //         { name: "Sugar", quantity: 5 },
+  //         { name: "Pink color", quantity: 10 }
+  //     ]};
+  // AxiosRequests.createRecipe(recipe);
+  //--------------------------------------------------
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      All is well
     </div>
   );
 }
