@@ -18,11 +18,14 @@ function App() {
   //     ]};
   // AxiosRequests.createRecipe(recipe);
   //--------------------------------------------------
+  //AxiosRequests.getSpecificRecipe(130);
 
 
   return (
     <div className="App">
       All is well
+      <br/>
+        <button onClick={() => this.AxiosRequests.clearDatabase()}>Clear Database</button>
     </div>
   );
 }
