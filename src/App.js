@@ -18,14 +18,32 @@ function App() {
   //     ]};
   // AxiosRequests.createRecipe(recipe);
   //--------------------------------------------------
+  //--------------MODIFY RECIPE TEST------------------
+  // let recipe = {name: null,
+  // instructions: null,
+  // ingredients: [
+  //         { name: "Sugar", quantity: 5 },
+  //         { name: "Pink color", quantity: 10 }
+  //     ]};
+  // AxiosRequests.modifyRecipe(recipe, 133);
+  //--------------------------------------------------
   //AxiosRequests.getSpecificRecipe(130);
-
+  //AxiosRequests.deleteRecipe(132);
+  //AxiosRequests.make(134);
+  //AxiosRequests.getInventory();
+  // ------------FILL INVENTORY-----------------
+  // AxiosRequests.fillInventory(
+  //     [
+  //       { name: "Sugar", quantity: 5 },
+  //       { name: "Pink color", quantity: 10 }
+  //     ]);
+  // --------------------------------------------
 
   return (
     <div className="App">
       All is well
       <br/>
-        <button onClick={() => this.AxiosRequests.clearDatabase()}>Clear Database</button>
+        <button onClick={() => AxiosRequests.clearDatabase()}>Clear Database</button>
     </div>
   );
 }
