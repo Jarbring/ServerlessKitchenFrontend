@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import AxiosRequests from './Modules/AxiosRequests';
+import AxiosRequests from './modules/AxiosRequests';
+import DisplayInventory from './modules/inventory/DisplayInventory';
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
       All is well
       <br/>
         <button onClick={() => AxiosRequests.clearDatabase()}>Clear Database</button>
+        <DisplayInventory />
     </div>
   );
 }
