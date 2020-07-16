@@ -2,6 +2,12 @@ import React from 'react';
 import './App.css';
 import AxiosRequests from './modules/AxiosRequests';
 import DisplayInventory from './modules/inventory/DisplayInventory';
+import DisplayRecipes from './modules/recipes/DisplayRecipes';
+import Button from 'react-bootstrap/Button'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import {Route, Switch, Link, Redirect} from 'react-router-dom';
 
 function App() {
 
@@ -42,10 +48,30 @@ function App() {
 
   return (
     <div className="App">
-      All is well
-      <br/>
-        <button onClick={() => AxiosRequests.clearDatabase()}>Clear Database</button>
-        <DisplayInventory />
+
+      <Switch>
+        <Route exact path="/" component={DisplayRecipes}/>
+        <Route exact path="/inventory" component={DisplayInventory}/>
+
+      </Switch>
+
+      <Row>
+        <Col>
+          <Button variant="danger" onClick={() => AxiosRequests.clearDatabase()}>Clear Database</Button>
+        </Col>
+        <br></br>
+        <br></br>
+      </Row>
+      <Row>
+        <Col sm="8" className="ml-3">
+          <DisplayRecipes />
+        </Col>
+        <Col xs="1">
+          <DisplayInventory />
+        </Col>
+      </Row>
+        
+        
     </div>
   );
 }

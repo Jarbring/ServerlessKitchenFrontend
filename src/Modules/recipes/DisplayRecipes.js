@@ -3,19 +3,19 @@ import AxiosRequests from '../AxiosRequests';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-export default class DisplayInventory extends React.Component {
+export default class DisplayRecipe extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            inventoryArray: []
+            recipeArray: []
         }
     }
 
     async componentDidMount() {
-        const inventoryImport = await AxiosRequests.getInventory();
+        const recipesImport = await AxiosRequests.getRecipes();
         this.setState({
-            inventoryArray: inventoryImport
+            recipeArray: recipesImport
         })
     }
 
@@ -23,11 +23,11 @@ export default class DisplayInventory extends React.Component {
 
         const renderArray = [];
 
-        for (let i = 0; i < this.state.inventoryArray.length; i++) {
+        for (let i = 0; i < this.state.recipeArray.length; i++) {
             renderArray.push(
-                <tr key={this.state.inventoryArray[i].name}>
-                    <td>{this.state.inventoryArray[i].name}</td>
-                    <td>{this.state.inventoryArray[i].quantity}</td>
+                <tr key={this.state.recipeArray[i].name}>
+                    <td>{i + 1}</td>
+                    <td>{this.state.recipeArray[i].name}</td>
                 </tr>
 
             )
@@ -38,19 +38,19 @@ export default class DisplayInventory extends React.Component {
                 <Table striped bordered hover size="sm">
                     <thead>
                         <tr>
-                            <th colSpan="2" style={{backgroundColor:"lightgreen"}}><h2 >Inventory</h2></th>
+                            <th colSpan="2" style={{backgroundColor:"lightblue"}}><h2>Recipes</h2></th>
                         </tr>
                         <tr>
-                            <th>Ingredient</th>
-                            <th>Quantity</th>
+                            <th>#</th>
+                            <th>Recipe Name</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         {renderArray}
                     </tbody>
                 </Table>
-                <Button >Add Ingredients</Button>
-            </div>    
+            </div>
         )
 
     }
