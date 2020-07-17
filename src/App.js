@@ -3,10 +3,14 @@ import './App.css';
 import AxiosRequests from './modules/AxiosRequests';
 import DisplayInventory from './modules/inventory/DisplayInventory';
 import DisplayRecipes from './modules/recipes/DisplayRecipes';
-import Button from 'react-bootstrap/Button'
+import StartPage from './modules/StartPage';
+import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
 import {Route, Switch, Link, Redirect} from 'react-router-dom';
 
 function App() {
@@ -49,31 +53,34 @@ function App() {
   return (
     <div className="App">
 
+<Navbar
+  className="justify-content-center"
+  bg="dark" variant="dark"
+  activeKey="/"
+  // onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+>
+  <Nav.Item>
+    <Nav.Link href="/">Start</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link href="/recipes" eventKey="/recipes">Recipes</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link href="/inventory" eventKey="/inventory">Inventory</Nav.Link>
+  </Nav.Item>
+</Navbar>
+
       <Switch>
-        <Route exact path="/" component={DisplayRecipes}/>
+        <Route exact path="/" component={StartPage}/>
+        <Route exact path="/recipes" component={DisplayRecipes}/>
         <Route exact path="/inventory" component={DisplayInventory}/>
 
       </Switch>
-
-      <Row>
-        <Col>
-          <Button variant="danger" onClick={() => AxiosRequests.clearDatabase()}>Clear Database</Button>
-        </Col>
-        <br></br>
-        <br></br>
-      </Row>
-      <Row>
-        <Col sm="8" className="ml-3">
-          <DisplayRecipes />
-        </Col>
-        <Col xs="1">
-          <DisplayInventory />
-        </Col>
-      </Row>
-        
-        
     </div>
   );
 }
 
 export default App;
+
+ 
+        
