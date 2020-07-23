@@ -11,7 +11,7 @@ import DisplayRecipes from './recipes/DisplayRecipes';
 function StartPage() {
 
     return (
-        <Container>
+        <Container >
             <Row>
                 <Col>
                     <Button variant="danger" onClick={() => AxiosRequests.clearDatabase()}>Clear Database</Button>
@@ -20,10 +20,11 @@ function StartPage() {
                 <br></br>
             </Row>
             <Row>
-                <Col sm="8" className="ml-3">
+                
+                <Col md="7">
                     <DisplayRecipes />
                 </Col>
-                <Col xs="1">
+                <Col md="4">
                     <DisplayInventory />
                 </Col>
             </Row>

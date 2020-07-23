@@ -7,6 +7,8 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+
 
 export default class DisplayRecipe extends React.Component {
 
@@ -45,11 +47,11 @@ export default class DisplayRecipe extends React.Component {
             changeColor = (i % 2 === 0 ? "white" : "lightgrey")
             renderArray.push(
 
-                <Row className="text-black" >
-                    <Dropdown style={{ width: "100%"}}>
-                        <Dropdown.Toggle className="rounded" id="dropdown-basic" style={{backgroundColor: changeColor, width: "100%" }}>
-       
-                            <Row style={{color: "black"}}>
+                <Row >
+                    <Dropdown style={{ width: "100%" }}>
+                        <Dropdown.Toggle id="dropdown-basic" style={{ backgroundColor: changeColor, width: "100%" }}>
+
+                            <Row style={{ color: "black" }}>
                                 <Col >{i + 1}</Col>
                                 <Col >{this.state.recipeArray[i].name}</Col>
                                 <Col>{this.state.recipeArray[i].ingredients.length}</Col>
@@ -82,41 +84,26 @@ export default class DisplayRecipe extends React.Component {
 
         return (
             <div>
-
-                <Row>
-                    <Col colSpan="6">
-                        <h2 className="text-center">Recipes</h2>
+                <Container>
+                    <Row>
+                        <Col>
+                            <h2 className="text-center">Recipes</h2>
+                        </Col>
+                    </Row>
+                    <Row colSpan="2" style={{ backgroundColor: "lightblue" }}>
+                        <Col>
+                            #
                     </Col>
-                </Row>
-                <Row colSpan="2" style={{ backgroundColor: "lightblue" }}>
-                    <Col>
-                        #
+                        <Col>
+                            Recipe Name
                     </Col>
-                    <Col>
-                        Recipe Name
+                        <Col>
+                            Number of ingredients
                     </Col>
-                    <Col>
-                        Number of ingredients
-                    </Col>
-                </Row>
-
+                    </Row>
+                
                 {renderArray.length ? renderArray : "Loading..."}
-
-                {/* <Table striped bordered hover size="sm">
-                    <thead>
-                        <tr>
-                            <th colSpan="2" style={{ backgroundColor: "lightblue" }}><h2>Recipes</h2></th>
-                        </tr>
-                        <tr>
-                            <th>#</th>
-                            <th>Recipe Name</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {renderArray.length ? renderArray : "Loading..."}
-                    </tbody>
-                </Table> */}
+                </Container>
                 <Button >Add Recipe</Button>
             </div>
         )

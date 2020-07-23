@@ -51,7 +51,7 @@ function App() {
   // --------------------------------------------
 
   return (
-    <div className="App">
+    <div className="App" >
 
 <Navbar
   className="justify-content-center"
