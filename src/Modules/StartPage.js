@@ -1,6 +1,5 @@
 import React from 'react';
 import AxiosRequests from './AxiosRequests';
-import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -8,7 +7,27 @@ import Row from 'react-bootstrap/Row';
 import DisplayInventory from './inventory/DisplayInventory';
 import DisplayRecipes from './recipes/DisplayRecipes';
 
-function StartPage() {
+export default class StartPage extends React.Component {
+    constructor(props){
+        super(props)
+        this.state={
+            refreshElement: false
+        }
+    }
+
+    renderAgain = () => {
+        this.setState({
+          refreshElement: true
+        })
+    }
+
+    dontRenderAgain = () => {
+        this.setState({
+          refreshElement: false
+        })
+    }
+
+render() {
 
     return (
         <Container >
@@ -22,15 +41,14 @@ function StartPage() {
             <Row>
                 
                 <Col md="7">
-                    <DisplayRecipes />
+                    <DisplayRecipes renderAgain={this.renderAgain}/>
                 </Col>
                 <Col md="4">
-                    <DisplayInventory />
+                    <DisplayInventory updateProps={this.state.refreshElement} dontRenderAgain={this.dontRenderAgain}/>
                 </Col>
             </Row>
         </Container>
     )
 
 }
-
-export default StartPage
+}

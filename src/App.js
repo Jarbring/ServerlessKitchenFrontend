@@ -1,13 +1,9 @@
 import React from 'react';
 import './App.css';
-import AxiosRequests from './modules/AxiosRequests';
 import DisplayInventory from './modules/inventory/DisplayInventory';
 import DisplayRecipes from './modules/recipes/DisplayRecipes';
 import StartPage from './modules/StartPage';
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
@@ -56,8 +52,6 @@ function App() {
 <Navbar
   className="justify-content-center"
   bg="dark" variant="dark"
-  activeKey="/"
-  // onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
 >
   <Nav.Item>
     <Nav.Link href="/">Start</Nav.Link>

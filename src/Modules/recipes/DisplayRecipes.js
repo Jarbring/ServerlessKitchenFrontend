@@ -1,10 +1,7 @@
 import React from 'react';
 import AxiosRequests from '../AxiosRequests';
-import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -30,12 +27,27 @@ export default class DisplayRecipe extends React.Component {
         let ingredients = [];
         for (let i = 0; i < ingredientsArray.length; i++) {
             ingredients.push(
-                <div>
+                <div key={i}>
                     <li>{ingredientsArray[i].name}: {ingredientsArray[i].quantity}</li>
                 </div>
             )
         }
         return ingredients;
+    }
+
+    makeRecipe = async (recipeId) => {
+        let recipeToBeMade = await AxiosRequests.make(recipeId);
+        if(recipeToBeMade && this.props.renderAgain) {
+            this.props.renderAgain();
+        }
+    }
+
+    editRecipe = async (recipeId) => {
+
+    }
+
+    deleteRecipe = async (recipeId) => {
+
     }
 
     render() {
@@ -47,7 +59,7 @@ export default class DisplayRecipe extends React.Component {
             changeColor = (i % 2 === 0 ? "white" : "lightgrey")
             renderArray.push(
 
-                <Row >
+                <Row key={this.state.recipeArray[i].name}>
                     <Dropdown style={{ width: "100%" }}>
                         <Dropdown.Toggle id="dropdown-basic" style={{ backgroundColor: changeColor, width: "100%" }}>
 
@@ -58,19 +70,26 @@ export default class DisplayRecipe extends React.Component {
                             </Row>
 
 
-                            <Dropdown.Menu>
+                            <Dropdown.Menu >
+                            <Dropdown.Item className="text-center" href="#/action-2" style={{backgroundColor: "lightblue"}}>
+                                    <h5>{this.state.recipeArray[i].name}</h5>
+                                </Dropdown.Item>
                                 <Dropdown.Item href="#/action-2">
-                                    Instructions
+                                    <strong>Instructions</strong>
                                     <p>{this.state.recipeArray[i].instructions}</p>
                                 </Dropdown.Item>
 
                                 <Dropdown.Item href="/inventory">
-                                    Ingredients
+                                    <strong>Ingredients</strong>
                                     <ul>
                                         {this.getIngredientList(this.state.recipeArray[i].ingredients)}
                                     </ul>
                                 </Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Make</Dropdown.Item>
+                                <Row >
+                                    <Col><Dropdown.Item style={{backgroundColor: "lightgreen"}} className="text-center rounded" onClick = {() => this.makeRecipe(this.state.recipeArray[i].id)} >Make</Dropdown.Item></Col>
+                                    <Col><Dropdown.Item style={{backgroundColor: "lightyellow"}} className="text-center rounded" onClick = {() => this.editRecipe(this.state.recipeArray[i].id)} >Edit</Dropdown.Item></Col>
+                                    <Col><Dropdown.Item style={{backgroundColor: "lightpink"}} className="text-center rounded" onClick = {() => this.deleteRecipe(this.state.recipeArray[i].id)} >Delete</Dropdown.Item></Col>
+                                </Row>
                             </Dropdown.Menu>
 
 

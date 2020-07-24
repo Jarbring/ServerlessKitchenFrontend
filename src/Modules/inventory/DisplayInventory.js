@@ -1,6 +1,5 @@
 import React from 'react';
 import AxiosRequests from '../AxiosRequests';
-import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -23,6 +22,16 @@ export default class DisplayInventory extends React.Component {
         })
     }
 
+    componentDidUpdate = async (prevProps) => {
+        if(this.props.updateProps !== prevProps.updateProps && this.props.updateProps === true) {
+        const inventoryImport = await AxiosRequests.getInventory();
+        this.setState({
+            inventoryArray: inventoryImport
+        })
+        this.props.dontRenderAgain();
+    }
+    }
+
     render() {
 
         const renderArray = [];
@@ -41,7 +50,7 @@ export default class DisplayInventory extends React.Component {
 
         return (
             <div >
-                <Container style={{width: "70%"}}>
+                <Container>
                 <Row>
                     <Col><h2 >Inventory</h2></Col>
                 </Row>
